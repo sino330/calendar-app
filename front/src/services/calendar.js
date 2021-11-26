@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 
-export const createCalendar = month => {
+export const createCalendar = (month) => {
   // 今月の最初の日を追加
   const firstDay = getMonth(month);
 
@@ -16,9 +16,9 @@ export const createCalendar = month => {
     });
 };
 
-export const getMonth=({year,month})=>{
-  return dayjs(`${year}-${month}`)
-}
+export const getMonth = ({ year, month }) => {
+  return dayjs(`${year}-${month}`);
+};
 
 export const isSameDay = (d1, d2) => {
   const format = "YYYYMMDD";
@@ -31,3 +31,33 @@ export const isSameMonth = (m1, m2) => {
 };
 
 export const isFirstDay = (day) => day.date() === 1;
+
+export const getNextMonth = (month) => {
+  const day = getMonth(month).add(1, "month");
+  return formatMonth(day);
+};
+
+export const getPreviousMonth = (month) => {
+  const day = getMonth(month).add(-1, "month");
+  return formatMonth(day);
+};
+
+export const formatMonth = (day) => ({
+  month: day.month() + 1,
+  year: day.year(),
+});
+
+// // ==========ここから編集する==========
+// const getMonthStateCreator = diff => month => {
+//   const day = getMonth(month).add(diff, "month");
+//   return formatMonth(day);
+// };
+
+// export const getNextMonth = getMonthStateCreator(1);
+// export const getPreviousMonth = getMonthStateCreator(-1);
+// // ==========ここまで編集する==========
+
+// export const formatMonth = day => ({
+//   month: day.month() + 1,
+//   year: day.year()
+// });

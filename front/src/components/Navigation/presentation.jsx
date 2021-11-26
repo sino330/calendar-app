@@ -1,6 +1,6 @@
 import React from "react";
 import { IconButton, Toolbar, Typography, withStyles } from "@material-ui/core";
-
+import { DatePicker } from "@material-ui/pickers";
 import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIos from "@material-ui/icons/ArrowForwardIos";
 import DehazeIcon from "@material-ui/icons/Dehaze";
@@ -9,11 +9,16 @@ const StyledToolbar = withStyles({
   root: { padding: "0" },
 })(Toolbar);
 
-const StyledTypography=withStyles({
-    root:{margin:"0 30px 0 10px"}
+const StyledTypography = withStyles({
+  root: { margin: "0 30px 0 10px" },
 })(Typography);
 
-const Navigation = () => {
+const StyledDatePicker = withStyles({
+  root: { marginLeft: 30 },
+})(DatePicker);
+
+const Navigation = ({ setNextMonth, setPreviousMonth,setMonth,month }) => {
+
   return (
     <StyledToolbar>
       <IconButton>
@@ -23,12 +28,22 @@ const Navigation = () => {
       <StyledTypography color="textSecondary" variant="h5" component="h1">
         カレンダー
       </StyledTypography>
-      <IconButton size="small">
+      <IconButton size="small" onClick={setPreviousMonth}>
         <ArrowBackIos />
       </IconButton>
-      <IconButton size="small">
+      <IconButton size="small" onClick={setNextMonth}>
         <ArrowForwardIos />
       </IconButton>
+      <StyledDatePicker
+        value={month}
+        onChange={setMonth}
+        variant="inline"
+        format="YYYY年 M月"
+        //animateYearScrolling={true}と同義
+        animateYearScrolling
+        //無駄な部分を削除
+        disableToolbar
+      />
     </StyledToolbar>
   );
 };
