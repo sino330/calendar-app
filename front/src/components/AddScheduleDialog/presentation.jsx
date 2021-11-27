@@ -32,6 +32,7 @@ const AddScheduleDialog = ({
   },
   closeDialog,
   setSchedule,
+  saveSchedule,
 }) => {
   return (
     <Dialog open={isDialogOpen} onClose={closeDialog} maxWidth="xs" fullWidth>
@@ -50,7 +51,7 @@ const AddScheduleDialog = ({
           value={title}
           onChange={(e) => setSchedule({ title: e.target.value })}
         />
-        <Grid container spacing={1} alignItems="center" justify="space-between">
+        <Grid container spacing={1} alignItems="center" justifyContent="space-between">
           <Grid item>
             <AccessTime />
           </Grid>
@@ -74,7 +75,7 @@ const AddScheduleDialog = ({
             />
           </Grid>
         </Grid>
-        <Grid container spacing={1} alignItems="center" justify="space-between">
+        <Grid container spacing={1} alignItems="center" justifyContent="space-between">
           <Grid item>
             <NotesOutlined />
           </Grid>
@@ -90,7 +91,7 @@ const AddScheduleDialog = ({
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button color="primary" variant="outlined">
+        <Button color="primary" variant="outlined" onClick={saveSchedule}>
           保存
         </Button>
       </DialogActions>

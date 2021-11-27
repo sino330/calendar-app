@@ -1,15 +1,22 @@
 import React from "react";
-import { GridList, Typography } from "@material-ui/core";
+import { GridList, Typography,ImageList } from "@material-ui/core";
 import * as styles from "./style.css";
 import CalendarElement from "../CalendarElement";
 
 const days = ["日", "月", "火", "水", "木", "金", "土"];
 
-const CalendarBoard = ({ calendar, month, openAddScheduleDialog }) => {
+const CalendarBoard = ({
+  calendar,
+  month,
+  openAddScheduleDialog,
+  schedules,
+}) => {
+  console.log(schedules);
   console.log(calendar);
+
   return (
     <div className={styles.container}>
-      <GridList className={styles.grid} cols={7} spacing={0} cellHeight="auto">
+      <ImageList className={styles.grid} cols={7} gap={0} rowHeight="auto">
         {days.map((d) => (
           <li key={d}>
             <Typography
@@ -24,11 +31,11 @@ const CalendarBoard = ({ calendar, month, openAddScheduleDialog }) => {
           </li>
         ))}
         {calendar.map((c) => (
-          <li key={c.toISOString()} onClick={() => openAddScheduleDialog()}>
+          <li key={c.toISOString()} onClick={() => openAddScheduleDialog(c)}>
             <CalendarElement day={c} month={month} />
           </li>
         ))}
-      </GridList>
+      </ImageList>
     </div>
   );
 };
