@@ -3,6 +3,7 @@ import { CALENDAR_SET_MONTH } from "./action";
 import { formatMonth } from "../../services/calendar";
 
 const day = dayjs();
+
 const init = formatMonth(day)
 
 // const init = {

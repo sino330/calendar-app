@@ -32,32 +32,27 @@ export const isSameMonth = (m1, m2) => {
 
 export const isFirstDay = (day) => day.date() === 1;
 
-export const getNextMonth = (month) => {
-  const day = getMonth(month).add(1, "month");
+// export const getNextMonth = (month) => {
+//   const day = getMonth(month).add(1, "month");
+//   return formatMonth(day);
+// };
+
+// export const getPreviousMonth = (month) => {
+//   const day = getMonth(month).add(-1, "month");
+//   return formatMonth(day);
+// };
+
+// // ==========ここから編集する==========
+const getMonthStateCreator = diff => month => {
+  const day = getMonth(month).add(diff, "month");
   return formatMonth(day);
 };
 
-export const getPreviousMonth = (month) => {
-  const day = getMonth(month).add(-1, "month");
-  return formatMonth(day);
-};
+export const getNextMonth = getMonthStateCreator(1);
+export const getPreviousMonth = getMonthStateCreator(-1);
+// // ==========ここまで編集する==========
 
 export const formatMonth = (day) => ({
   month: day.month() + 1,
   year: day.year(),
 });
-
-// // ==========ここから編集する==========
-// const getMonthStateCreator = diff => month => {
-//   const day = getMonth(month).add(diff, "month");
-//   return formatMonth(day);
-// };
-
-// export const getNextMonth = getMonthStateCreator(1);
-// export const getPreviousMonth = getMonthStateCreator(-1);
-// // ==========ここまで編集する==========
-
-// export const formatMonth = day => ({
-//   month: day.month() + 1,
-//   year: day.year()
-// });
