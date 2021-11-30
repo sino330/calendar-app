@@ -7,7 +7,12 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
-import { Close, LocationOnOutlined, NotesOutlined } from "@material-ui/icons";
+import {
+  Close,
+  LocationOnOutlined,
+  NotesOutlined,
+  DeleteOutlineOutlined,
+} from "@material-ui/icons";
 
 import styles from "./style.css";
 
@@ -18,11 +23,15 @@ const spacer = (top, bottom) => ({
 const CurrentScheduleDialog = ({
   schedule: { item, isDialogOpen },
   closeDialog,
+  deleteItem,
 }) => {
   return (
     <Dialog open={isDialogOpen} onClose={closeDialog} maxWidth="xs" fullWidth>
       <DialogActions>
         <div className={styles.closeButton}>
+          <IconButton onClick={deleteItem} size="small">
+            <DeleteOutlineOutlined />
+          </IconButton>
           <IconButton onClick={closeDialog} size="small">
             <Close />
           </IconButton>
@@ -30,7 +39,7 @@ const CurrentScheduleDialog = ({
       </DialogActions>
 
       <DialogContent>
-          {/* itemが空以外の時に表示(item.locationがあるときだけ表示) */}
+        {/* itemが空以外の時に表示(item.locationがあるときだけ表示) */}
         {item && (
           <>
             <div>
@@ -60,7 +69,7 @@ const CurrentScheduleDialog = ({
                 container
                 spacing={1}
                 alignItems="center"
-                justify="space-between"
+                justifyContent="space-between"
                 style={spacer(0, 4)}
               >
                 <Grid item>
