@@ -12,6 +12,7 @@ import DayjsUtils from "@date-io/dayjs"
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import AddScheduleDialog from "./components/AddScheduleDialog/container";
 import CurrentScheduleDialog from "./components/CurrentScheduleDialog/container";
+import ErrorSnackbar from "./components/ErrorSnackbar/contaienr";
 //redux-thunkが普通のactionなのかthunkのactionなのかを判断
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
@@ -25,6 +26,7 @@ const App = () => (
       <CalendarBoard />
       <AddScheduleDialog />
       <CurrentScheduleDialog />
+      <ErrorSnackbar />
     </MuiPickersUtilsProvider>
   </Provider>
 );
